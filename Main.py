@@ -111,5 +111,5 @@ async def setuser(ctx,uid):
 async def char(ctx):
     await chardisplay.char(ctx)
 
-TOKEN = 'MTIzOTc2MzI5OTQ5MTM4MTM1OQ.GdYIJp.X0dDo4_ZUuVQkptI0K_PUM0JQcobud7_UNzYKw'
+TOKEN = 'your token'
 bot.run(TOKEN)
