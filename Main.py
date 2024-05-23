@@ -35,7 +35,7 @@ async def checkuser(ctx,uid):
     await genshin.checkuser.checkusers(ctx,uid)
 @bot.command()
 async def checkchar(ctx,uid):
-    genshin.checkchars.checkchars(ctx,uid)
+    await genshin.checkchars.checkchars(ctx,uid)
 
 
 
