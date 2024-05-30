@@ -7,6 +7,7 @@ import Paginator
 
 import requests
 import json
+import genshin.charbuild
 import genshin.checkchars
 import genshin.checkuser
 import genshin.invlink1 as invlink1
@@ -35,7 +36,12 @@ async def checkuser(ctx,uid):
     await genshin.checkuser.checkusers(ctx,uid)
 @bot.command()
 async def checkchar(ctx,uid):
-    genshin.checkchars.checkchars(ctx,uid)
+    await genshin.checkchars.checkchars(ctx,uid)
+
+
+@bot.command()
+async def build(ctx,charnum):
+    await genshin.charbuild.build(ctx,charnum)
 
 
 
@@ -111,5 +117,5 @@ async def setuser(ctx,uid):
 async def char(ctx):
     await chardisplay.char(ctx)
 
-TOKEN = 'your token'
+TOKEN = ''
 bot.run(TOKEN)

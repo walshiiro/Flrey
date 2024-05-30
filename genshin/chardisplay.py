@@ -144,21 +144,21 @@ async def char(ctx):
             int(round(EM, 0))) + "\n**▸Crit Rate**: " + str(round(CRITRate, 1)) + "%" + "\n**▸Crit DMG**:" + str(
             round(CritDMG, 1)) + "%" + "\n**▸ER**: " + str(round(ER * 100, 1)) + "%"
         # Embed the infomation
-            embed = discord.Embed(description=descrip, colour=0x00b0f4)
+                embed = discord.Embed(description=descrip, colour=0x00b0f4)
 
-            embed.set_author(name="Character Showcase for " + nickname, url="https://enka.network/u/" + UID,
+                embed.set_author(name="Character Showcase for " + nickname, url="https://enka.network/u/" + UID,
                          icon_url="https://i.pinimg.com/564x/16/5d/f0/165df0ced77df9aaf3903af3db5e93d1.jpg")
 
-            embed.set_thumbnail(url="https://enka.network/ui/" + charAVT + ".png")
+                embed.set_thumbnail(url="https://enka.network/ui/" + charAVT + ".png")
 
-            embed.set_footer(text="Get the infomation from EnkaNetwork")
-            embeds.append(embed)
+                embed.set_footer(text="Get the infomation from EnkaNetwork")
+                embeds.append(embed)
         PreviousButton = discord.ui.Button(label="<",style=discord.ButtonStyle.gray)
         NextButton = discord.ui.Button(label=">",style=discord.ButtonStyle.gray)
         await Paginator.Simple(PreviousButton=PreviousButton,NextButton=NextButton,).start(ctx, pages=embeds)
     else:
         embed = discord.Embed(
-                          description=":white_check_mark:  Your UID hasn't been add to the database",
+                          description=":negative_squared_cross_mark:  Your UID hasn't been add to the database",
                           colour=0x00b0f4
                           )
 
