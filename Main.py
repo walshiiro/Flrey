@@ -4,10 +4,12 @@ from discord import Intents, Client,User
 
 from discord.ext import commands
 import Paginator
+import random
 
 import requests
 import json
 import genshin.charbuild
+import genshin.checkbuild
 import genshin.checkchars
 import genshin.checkuser
 import genshin.invlink1 as invlink1
@@ -37,11 +39,21 @@ async def checkuser(ctx,uid):
 @bot.command()
 async def checkchar(ctx,uid):
     await genshin.checkchars.checkchars(ctx,uid)
+@bot.command()
+async def checkbuild(ctx,uid,charnum):
+    await genshin.checkbuild.build(ctx,uid,charnum)
 
 
 @bot.command()
 async def build(ctx,charnum):
     await genshin.charbuild.build(ctx,charnum)
+
+@bot.command()
+async def pick(ctx, first, second):
+    await ctx.send('My choice is: {} '.format(random.choice([first, second])))
+@bot.command()
+async def whoisthebestdriver(ctx):
+    await ctx.send('Max Verstappen for sure!!!')
 
 
 

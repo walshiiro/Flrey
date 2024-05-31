@@ -8,16 +8,8 @@ import Paginator
 import requests
 import json
 
-async def build(ctx,charnum1):
-    userid = ctx.message.author.id
-    getlogininfo = json.load(open('jsonfile/uidfromuser.json'))
-    datafilelength = len(getlogininfo["userdata"])
-    check=int(0)
-    for i in range(0,datafilelength):
-        if(getlogininfo["userdata"][i]["userid"] == userid):
-            uid = getlogininfo["userdata"][i]["useruid"]
-            check=check+1
-            break
+async def build(ctx,uid,charnum1):
+    check=1
     if(check==1):
         src = 'https://enka.network/api/uid/' + uid  # get data from EnkaNetwork
         solditems = requests.get(src)

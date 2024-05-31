@@ -1,3 +1,5 @@
+
+
 import discord
 from discord import Intents, Client
 
@@ -30,6 +32,10 @@ async def checkchars(ctx,uid):
             character = json.load(open('jsonfile/charinfo.json'))
             charAVT = character[charimgid1]['SideIconName']
             charlvl = userdata['avatarInfoList'][current]['propMap']['4001']['val']
+            if 'Constellation' in userdata["avatarInfoList"]:
+                Constellation = len(userdata['avatarInfoList'][current]['talentIdList'])
+            else:
+                Constellation =0
 
             if '2' not in userdata['avatarInfoList'][current]['fightPropMap'] and '3' not in \
                 userdata['avatarInfoList'][current]['fightPropMap']:
@@ -125,7 +131,7 @@ async def checkchars(ctx,uid):
             UID = userdata['uid']
             descrip = "**Weapon**: " + WeaponName + " (LVL: " + str(WeaponLevel) + ")" + "\n**Base ATK**: " + str(
             BaseATK) + "\n**" + Base2 + "**: " + str(base2stats) + "\n**Character Level**: " + str(
-            charlvl) + "\n**▸HP**: " + str(round(HP, 3)) + "\n**▸ATK**: " + str(
+            charlvl)+"\n**Constellation: **"+str(Constellation) + "\n**▸HP**: " + str(round(HP, 3)) + "\n**▸ATK**: " + str(
             int(round(ATK, 0))) + "\n**▸DEF**: " + str(int(round(DEF, 0))) + "\n**▸EM**: " + str(
             int(round(EM, 0))) + "\n**▸Crit Rate**: " + str(round(CRITRate, 1)) + "%" + "\n**▸Crit DMG**:" + str(
             round(CritDMG, 1)) + "%" + "\n**▸ER**: " + str(round(ER * 100, 1)) + "%"

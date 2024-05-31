@@ -40,6 +40,12 @@ async def char(ctx):
             for current in range(0,numberChar):
         # Get char info
                 charimgid = userdata['avatarInfoList'][current]['avatarId']
+                if 'Constellation' in userdata["avatarInfoList"]:
+                    Constellation = len(userdata['avatarInfoList'][current]['talentIdList'])
+                else:
+                    Constellation =0
+                    
+                getNumberArtifacts= len(userdata['avatarInfoList'][current]['equipList'])
                 charimgid1 = str(charimgid)
                 character = json.load(open('jsonfile/charinfo.json'))
                 charAVT = character[charimgid1]['SideIconName']
@@ -50,8 +56,7 @@ async def char(ctx):
                     HP = userdata['avatarInfoList'][current]['fightPropMap']['1']
                 elif '2' in userdata['avatarInfoList'][current]['fightPropMap'] and '3' not in \
                     userdata['avatarInfoList'][current]['fightPropMap']:
-                    HP = userdata['avatarInfoList'][current]['fightPropMap']['1'] + \
-                 userdata['avatarInfoList'][current]['fightPropMap']['2']
+                    HP = userdata['avatarInfoList'][current]['fightPropMap']['1'] + userdata['avatarInfoList'][current]['fightPropMap']['2']
                 elif '2' not in userdata['avatarInfoList'][current]['fightPropMap'] and '3' in \
                     userdata['avatarInfoList'][current]['fightPropMap']:
                     HP = userdata['avatarInfoList'][current]['fightPropMap']['1'] + \
@@ -59,10 +64,7 @@ async def char(ctx):
                  userdata['avatarInfoList'][current]['fightPropMap']['3']
                 else:
                     HP = userdata['avatarInfoList'][current]['fightPropMap']['1'] + \
-                 userdata['avatarInfoList'][current]['fightPropMap']['2'] + (
-                             userdata['avatarInfoList'][current]['fightPropMap']['1'] +
-                             userdata['avatarInfoList'][current]['fightPropMap']['2']) * \
-                 userdata['avatarInfoList'][current]['fightPropMap']['3']
+                 userdata['avatarInfoList'][current]['fightPropMap']['2'] + userdata['avatarInfoList'][current]['fightPropMap']['1'] * userdata['avatarInfoList'][current]['fightPropMap']['3']
 
                 if '5' not in userdata['avatarInfoList'][current]['fightPropMap'] and '6' not in \
                 userdata['avatarInfoList'][current]['fightPropMap']:
@@ -78,10 +80,7 @@ async def char(ctx):
                   userdata['avatarInfoList'][current]['fightPropMap']['6']
                 else:
                     ATK = userdata['avatarInfoList'][current]['fightPropMap']['4'] + \
-                  userdata['avatarInfoList'][current]['fightPropMap']['5'] + (
-                              userdata['avatarInfoList'][current]['fightPropMap']['4'] +
-                              userdata['avatarInfoList'][current]['fightPropMap']['5']) * \
-                  userdata['avatarInfoList'][current]['fightPropMap']['6']
+                  userdata['avatarInfoList'][current]['fightPropMap']['5'] + userdata['avatarInfoList'][current]['fightPropMap']['4']  * userdata['avatarInfoList'][current]['fightPropMap']['6']
 
                 if '8' not in userdata['avatarInfoList'][current]['fightPropMap'] and '9' not in \
                 userdata['avatarInfoList'][current]['fightPropMap']:
@@ -97,22 +96,19 @@ async def char(ctx):
                   userdata['avatarInfoList'][current]['fightPropMap']['9']
                 else:
                     DEF = userdata['avatarInfoList'][current]['fightPropMap']['7'] + \
-                  userdata['avatarInfoList'][current]['fightPropMap']['8'] + (
-                              userdata['avatarInfoList'][current]['fightPropMap']['7'] +
-                              userdata['avatarInfoList'][current]['fightPropMap']['8']) * \
-                  userdata['avatarInfoList'][current]['fightPropMap']['9']
+                  userdata['avatarInfoList'][current]['fightPropMap']['8'] + userdata['avatarInfoList'][current]['fightPropMap']['7'] * userdata['avatarInfoList'][current]['fightPropMap']['9']
 
                 CRITRate = userdata['avatarInfoList'][current]['fightPropMap']['20'] * 100
                 CritDMG = userdata['avatarInfoList'][current]['fightPropMap']['22'] * 100
                 ER = userdata['avatarInfoList'][current]['fightPropMap']['23']
                 EM = userdata['avatarInfoList'][current]['fightPropMap']['28']
-                WeaponID = userdata['avatarInfoList'][current]['equipList'][5]['flat']['nameTextMapHash']
-                WeaponLevel = userdata['avatarInfoList'][current]['equipList'][5]['weapon']['level']
+                WeaponID = userdata['avatarInfoList'][current]['equipList'][getNumberArtifacts-1]['flat']['nameTextMapHash']
+                WeaponLevel = userdata['avatarInfoList'][current]['equipList'][getNumberArtifacts-1]['weapon']['level']
                 WeaponName = weapon['en'][WeaponID]
-                BaseATK = userdata['avatarInfoList'][current]['equipList'][5]['flat']['weaponStats'][0]['statValue']
-                anotherfromweaponidfkwtfisthat = userdata['avatarInfoList'][0]['equipList'][5]['flat']['weaponStats'][1][
+                BaseATK = userdata['avatarInfoList'][current]['equipList'][getNumberArtifacts-1]['flat']['weaponStats'][0]['statValue']
+                anotherfromweaponidfkwtfisthat = userdata['avatarInfoList'][current]['equipList'][getNumberArtifacts-1]['flat']['weaponStats'][1][
             'appendPropId']
-                base2stats = userdata['avatarInfoList'][current]['equipList'][5]['flat']['weaponStats'][1]['statValue']
+                base2stats = userdata['avatarInfoList'][current]['equipList'][getNumberArtifacts-1]['flat']['weaponStats'][1]['statValue']
                 if anotherfromweaponidfkwtfisthat == 'FIGHT_PROP_HP':
                     Base2 = 'Flat HP'
                 elif anotherfromweaponidfkwtfisthat == 'FIGHT_PROP_ATTACK':
@@ -139,7 +135,7 @@ async def char(ctx):
                 UID = userdata['uid']
                 descrip = "**Weapon**: " + WeaponName + " (LVL: " + str(WeaponLevel) + ")" + "\n**Base ATK**: " + str(
             BaseATK) + "\n**" + Base2 + "**: " + str(base2stats) + "\n**Character Level**: " + str(
-            charlvl) + "\n**▸HP**: " + str(round(HP, 3)) + "\n**▸ATK**: " + str(
+            charlvl)+"\n**Constellation: **"+str(Constellation) + "\n**▸HP**: " + str(round(HP, 3)) + "\n**▸ATK**: " + str(
             int(round(ATK, 0))) + "\n**▸DEF**: " + str(int(round(DEF, 0))) + "\n**▸EM**: " + str(
             int(round(EM, 0))) + "\n**▸Crit Rate**: " + str(round(CRITRate, 1)) + "%" + "\n**▸Crit DMG**:" + str(
             round(CritDMG, 1)) + "%" + "\n**▸ER**: " + str(round(ER * 100, 1)) + "%"
