@@ -35,9 +35,9 @@ async def checkusers(ctx,uid):
     SpiralAbyss = user["playerInfo"]['towerFloorIndex']
     SpiralAbyssLevel = user["playerInfo"]['towerLevelIndex']
     UID = user['uid']
-    cards = user["playerInfo"]['showNameCardIdList'][0]
+    #cards = user["playerInfo"]['showNameCardIdList'][0]
     avatar = user["playerInfo"]['profilePicture']['id']
-    idcard = idcards[str(cards)]["icon"]
+    #idcard = idcards[str(cards)]["icon"]
     idavatar = avatars[str(avatar)]["iconPath"]
     descrip = "> **Signature**: " + signature + "\n**▸AR**: " + str(ar) + "\n**▸World Level**: " + str(
         worldlevel) + "\n**▸Achievement**: " + str(finishAchievement) + "\n**▸SpiralAbyss**: " + str(
@@ -50,5 +50,5 @@ async def checkusers(ctx,uid):
     embed.set_thumbnail(url="https://enka.network/ui/" + idavatar + ".png")
     embed.set_footer(text="Get the data from EnkaNetwork",
                      icon_url="https://i.pinimg.com/736x/ff/b3/0f/ffb30fef8712c9503e23a4b851c2a85c.jpg")
-    embed.set_image(url="https://enka.network/ui/" + idcard + ".png")
+    #embed.set_image(url="https://enka.network/ui/" + idcard + ".png")
     await ctx.send(embed=embed)

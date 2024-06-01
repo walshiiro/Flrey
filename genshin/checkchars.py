@@ -27,6 +27,7 @@ async def checkchars(ctx,uid):
     if numberChar != 0:
         for current in range(0,numberChar):
         # Get char info
+            getNumberArtifacts= len(userdata['avatarInfoList'][current]['equipList'])
             charimgid = userdata['avatarInfoList'][current]['avatarId']
             charimgid1 = str(charimgid)
             character = json.load(open('jsonfile/charinfo.json'))
@@ -98,13 +99,13 @@ async def checkchars(ctx,uid):
             CritDMG = userdata['avatarInfoList'][current]['fightPropMap']['22'] * 100
             ER = userdata['avatarInfoList'][current]['fightPropMap']['23']
             EM = userdata['avatarInfoList'][current]['fightPropMap']['28']
-            WeaponID = userdata['avatarInfoList'][current]['equipList'][5]['flat']['nameTextMapHash']
-            WeaponLevel = userdata['avatarInfoList'][current]['equipList'][5]['weapon']['level']
+            WeaponID = userdata['avatarInfoList'][current]['equipList'][getNumberArtifacts-1]['flat']['nameTextMapHash']
+            WeaponLevel = userdata['avatarInfoList'][current]['equipList'][getNumberArtifacts-1]['weapon']['level']
             WeaponName = weapon['en'][WeaponID]
-            BaseATK = userdata['avatarInfoList'][current]['equipList'][5]['flat']['weaponStats'][0]['statValue']
-            anotherfromweaponidfkwtfisthat = userdata['avatarInfoList'][0]['equipList'][5]['flat']['weaponStats'][1][
+            BaseATK = userdata['avatarInfoList'][current]['equipList'][getNumberArtifacts-1]['flat']['weaponStats'][0]['statValue']
+            anotherfromweaponidfkwtfisthat = userdata['avatarInfoList'][current]['equipList'][getNumberArtifacts-1]['flat']['weaponStats'][1][
             'appendPropId']
-            base2stats = userdata['avatarInfoList'][current]['equipList'][5]['flat']['weaponStats'][1]['statValue']
+            base2stats = userdata['avatarInfoList'][current]['equipList'][getNumberArtifacts-1]['flat']['weaponStats'][1]['statValue']
             if anotherfromweaponidfkwtfisthat == 'FIGHT_PROP_HP':
                 Base2 = 'Flat HP'
             elif anotherfromweaponidfkwtfisthat == 'FIGHT_PROP_ATTACK':

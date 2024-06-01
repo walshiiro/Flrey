@@ -1,10 +1,9 @@
 import discord
 from discord import Intents, Client
-
 from discord.ext import commands
 from discord.ext.commands import bot
 import Paginator
-
+import Main
 import requests
 import json
 
@@ -14,15 +13,14 @@ import json
 
 async def char(ctx):
     userid = ctx.message.author.id
-    getlogininfo = json.load(open('jsonfile/uidfromuser.json'))
-    datafilelength = len(getlogininfo["userdata"])
-    check=int(0)
-    for i in range(0,datafilelength):
-        if(getlogininfo["userdata"][i]["userid"] == userid):
-            uid = getlogininfo["userdata"][i]["useruid"]
-            check=check+1
-            break
+    sql = "SELECT * FROM discorduserid WHERE userid =%s"
+    val =(userid, )
+    Main.mycursor.execute(sql,val)
+    index = Main.mycursor.fetchall()
+    check= len(index)
     if(check==1):  
+        for i in index:
+            uid = i[1] 
         src = 'https://enka.network/api/uid/' + uid  # get data from EnkaNetwork
         solditems = requests.get(src)
         data = solditems.json()
