@@ -97,6 +97,8 @@ async def setuser(ctx,uid):
 
         embed.set_author(name="Configure: Genshin UID",
                      icon_url="https://i.imgur.com/T8KX9tC.jpg")
+        discordavt=ctx.message.author.avatar
+        embed.set_thumbnail(url=discordavt)
 
         embed.set_footer(text="Fley Discord Bot",
                      icon_url="https://i.imgur.com/T8KX9tC.jpg")
@@ -117,13 +119,19 @@ async def setuser(ctx,uid):
                           description=":white_check_mark:  Your UID has been edited to " + uid,
                           colour=0x00b0f4
                           )
-
+        discordavt=ctx.message.author.avatar
+        embed.set_thumbnail(url=discordavt)
         embed.set_author(name="Configure: Genshin UID",
                      icon_url="https://i.imgur.com/T8KX9tC.jpg")
 
         embed.set_footer(text="Fley Discord Bot",
                      icon_url="https://i.imgur.com/T8KX9tC.jpg")
         await ctx.send(embed=embed)
+bot.remove_command('help')
+
+@bot.command()
+async def help(ctx):
+    await ctx.send('https://github.com/walshiiro/Flrey')
         
 @bot.command()
 async def char(ctx):
